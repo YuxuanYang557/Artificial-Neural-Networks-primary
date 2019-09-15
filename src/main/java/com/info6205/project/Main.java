@@ -14,9 +14,9 @@ public class Main {
 		NeuralNet net = new NeuralNet(netS);
 		//net.generateTestBias();
 	
-		TrainSet ts =createTrainSet(0,40000);
+		TrainSet ts =createTrainSet(0,30000);
 		
-		trainData(net, ts, 20, 20, 1500);
+		trainData(net, ts, 10, 10, 2000);
 		
 		TrainSet ts2 = createTrainSet(40001, 41000);
 		testData(net, ts2);
@@ -62,8 +62,8 @@ public class Main {
 	}
 	
 	public static void testData(NeuralNet net, TrainSet set) {
-		int size = set.size();
-		int count = 0;
+		double size = set.size();
+		double count = 0;
 		
 		for(int i = 0; i< set.size(); i++) {
 			net.calHiddenOutPut(set.getInput(i));
@@ -74,8 +74,10 @@ public class Main {
 			if(a == b) count++;
 			
 		}
+		double result = count / size;
 		
-		System.out.println("System gets " + count + " correct prediction from " + size+ " hand-writing images by Sigmoid");
+		System.out.println("System gets " + (int)count + " correct prediction from " + (int)size+ " hand-writing images by Sigmoid");
+		System.out.println("the result is: " + result *100 + "%");
 
 	} 
 	
